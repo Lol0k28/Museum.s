@@ -1,0 +1,2 @@
+from ext import app
+from routes import view_museums, logout, login, registration, contacts, add_artefact, add_comment, add_museum, home, delete_artefact, delete_museum, edit_artefact, edit_museum, artefact, info

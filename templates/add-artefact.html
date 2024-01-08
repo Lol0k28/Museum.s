@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body{
+    background-color:rgb(242, 178, 16);
+    }
+     .bottom_info{
+    position:relative;
+    top:490px;
+    }
+    .artefact_add_card.text-centre{
+   position:relative;
+   background-color:black;
+   top:100px;
+   left:20px;
+   width: 98%;
+   height: 510px;
+   padding: 15px 15px 15px 15px;
+   display: flex;
+   flex-direction: column;
+   border-radius:12px;
+   box-shadow:1px 1px 20px 10px red;
+   transition: 0.3s;
+   }
+   .artefact_add_card.text-centre:hover{
+   box-shadow:1px 1px 20px 10px #78e119;
+   transition: 0.3s;
+   }
+   .add-artefact-title{
+   position: relative;
+   font-size: 25px;
+   background-color: white;
+   width: 345px;
+   height: 50px;
+   left: 150px;
+   top: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   border:1px solid black;
+   border-radius:9px;
+   }
+    .alert.alert-danger{
+        width: 20%;
+    height: 7%;
+    display: flex;
+    align-items: center;
+    }
+</style>
+
+<p class="add-artefact-title"> არტეფაქტის დამატება </p>
+
+<div class="artefact_add_card text-centre">
+    {% for field, errors in form.errors.items() %}
+    {% for error in errors %}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.title(class="form-control mt-5", placeholder=form.title.label.text) }}
+        {{ form.info(class="form-control mt-5", placeholder=form.info.label.text) }}
+        {{ form.artefact_museum(class="form-control mt-5", placeholder=form.artefact_museum.label.text) }}
+        {{ form.img(class="form-control mt-5", placeholder=form.img.label.text, accept=".jpg,.jpeg,.png") }}
+        {{ form.submit(class="btn btn-success mt-5") }}
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body{
+    background-color:rgb(242, 178, 16);
+    }
+.bottom_info{
+position:relative;
+top:150px;
+}
+    .artefact-card{
+position:relative;
+background-color:white;
+width:400px;
+left:20px;
+top:20px;
+
+}
+.artefact-card-img{
+width:300px;
+height:200px;
+}
+
+    .col {
+    flex: 1 0 0%;
+    height: 520px;
+</style>
+
+{% if current_user.role == "Admin" %}
+<style>
+    .col{
+    flex: 1 0 0%;
+    height: 655px;
+    }
+</style>
+{% endif %}
+
+<div class="div_centre2">
+
+    <div class="moving-container">
+        <div class="container text-center">
+            <div class="row align-items-start">
+                {% for museum_info in museum_info %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+
+                        <img src="/static/{{museum_info.img}}"
+
+                             class="card-img-top" alt="museum">
+                        <div class="card-body">
+                            <h5 class="card-title">{{museum_info.title}}</h5>
+
+                            <p class="artefact-text">{{museum_info.info}}</p>
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">{{museum_info.country}}</li>
+
+                        </ul>
+                        {% if current_user.is_authenticated %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a class="artefact-card-button"
+                                                           href="/museums/{{museum_info.id}}">
+                                <button class="artefact-card-button-btn btn btn-warning">მეტი</button>
+                            </a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                        {% if current_user.role == "Admin" %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a class="btn btn-outline-success" href="/edit-museum/{{museum_info.id}}">
+                                    რედაქტირება
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a class="btn btn-outline-danger" href="/delete-museum/{{museum_info.id}}">
+                                    წაშლა
+                                </a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

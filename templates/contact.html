@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<style>
+    body{
+    background-color: rgb(165, 165, 165);
+    }
+
+
+
+
+.contact-top-img{
+width: 85%;
+height: 900px;
+margin-left: 130px;
+margin-top: 50px;
+border-radius:12px;
+border:1.5px solid black;
+
+}
+
+.row{
+position:relative;
+bottom:990px;
+right:400px;
+gap:50px;
+}
+
+
+.col-6.col-sm-3{
+width:40%;
+
+}
+
+.text-center{
+height:10px;
+}
+
+
+.contact-filial-number{
+ position:relative;
+ left:600px;
+ top:120px;
+ width:350px;
+ height:370px;
+ background-color:white;
+ padding:30px 30px 30px 30px;
+ border-radius:12px;
+ border:1.5px solid black;
+ box-shadow:0px 9px 20px 0px aqua;
+ transition:0.3s;
+ display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+ }
+
+ .contact-filial-number:hover{
+  box-shadow:0px 9px 20px 0px blue;
+  transition:0.3s;
+ }
+
+ .fa-solid.fa-phone{
+ color:black;
+ }
+
+ .contact-title{
+ font-size:30px;
+ height:50px;
+ }
+
+  .contact-number{
+ height:40px;
+ }
+
+  .contact-info{
+ height:40px;
+ }
+
+ .conteiner-img{
+ margin-top:20px;
+ width: 290px;
+ height: 155px;
+ box-shadow:-5px 5px 18px 5px gray;
+ border-radius:7px;
+ }
+
+
+ .user-opinion{
+ position:relative;
+ width:100%;
+ height:500px;
+ background-color:white;
+ border-top:1px solid black;
+ border-bottom:1px solid black;
+top:50px;
+ }
+
+.user-opinion_title{
+position:relative;
+font-size:30px;
+border-left:5px solid orange;
+width:200px;
+top:50px;
+left:100px;
+transition: 0.3s;
+}
+
+.user-opinion_title:hover{
+color:gray;
+transition: 0.3s;
+}
+
+.submit-btn{
+position:relative;
+top:150px;
+left:100px;
+width:300px;
+height:50px;
+}
+
+.opinion{
+position:relative;
+top:100px;
+left:100px;
+width:500px;
+}
+
+.opinion-width{
+width:500px;
+height:100px;
+}
+
+.opinion-btn{
+width:170px;
+height:40px;
+border:none;
+background-color:rgb(176, 86, 255);
+border-radius:7px;
+transition: 0.3s;
+}
+
+.opinion-btn:hover{
+background-color:rgb(131, 0, 246);
+color:white;
+transition: 0.3s;
+}
+
+.centre-stick{
+position:absolute;
+width:950px;
+height:499px;
+border-right:1px solid black;
+}
+
+.map{
+position:relative;
+left:1250px;
+width:602px;
+bottom:120px;
+border:1px solid black;
+}
+
+.map_title{
+position:relative;
+left:1000px;
+top:50px;
+font-size:30px;
+width:200px;
+border-left:5px solid orange;
+}
+
+.map_title_bottom_info{
+position:relative;
+left:1000px;
+top:80px;
+font-size:16px;
+width:200px;
+border-left:5px solid orange;
+}
+
+.filial_adress{
+position:relative;
+left:1000px;
+top:100px;
+font-size:16px;
+width:300px;
+height:70px;
+border-left:5px solid orange;
+}
+
+.map_filial_adress{
+font-size:17.2px;
+}
+
+</style>
+
+
+<img class="contact-top-img" src="/static/worlds-museum1.webp" alt="museum">
+
+<div class="container text-center">
+    <div class="row">
+        {% for contact_info in contact_info %}
+        <div class="col-6 col-sm-3">
+            <div class="contact-filial-number">
+                <div class="contact-title"> {{contact_info["top-name"]}}</div>
+                <div class="contact-title" style="font-size:18px;">{{contact_info["name"]}}</div>
+                <div class="contact-number"> {{contact_info["title_info"]}}</div>
+                <div class="contact-info">{{contact_info["info"]}}</div>
+                <div class="contact-conteiner-img"><a href="https://tourscanner.com/blog/best-museums-in-the-world/"
+                                                      target="_blank"><img class="conteiner-img"
+                                                                           src="/static/{{contact_info['img']}}"
+                                                                           alt="museum"> </a></div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="w-100"></div>
+    </div>
+</div>
+
+<div class="user-opinion">
+    <div class="centre-stick">
+        {% if current_user.is_authenticated %}
+        <div class="user-opinion_title">მოგვწერეთ !</div>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="opinion">
+                {{ form.opinion(class="opinion-width", placeholder=form.opinion.label.text) }}
+            </div>
+            <div class="submit-btn">
+                {{ form.submit(class="opinion-btn") }}
+            </div>
+        </form>
+        {% else %}
+        <div class="user-opinion_title" style="font-size:20px;">თუ გსურთ რომ მოგვწეროთ თქვენი აზრი, გთხოვთ
+            დარეგისტრირდით.
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div class="map-conteiner">
+        <div class="map_title">მისამართი</div>
+        <div class="map_title_bottom_info">მსოფლიო მუზეუმი !</div>
+        <div class="filial_adress">
+            <pre class="map_filial_adress">
+ჩვენი ფილიალის მისამართი:
+
+Kote Marjanishvili St
+            </pre>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2378.2823228479265!2d-2.9837560229290325!3d53.40977686997512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b213afc69b5bb%3A0xef69853bb9fe0239!2z0JzQuNGA0L7QstC-0Lkg0JzRg9C30LXQuQ!5e0!3m2!1sru!2sge!4v1702650117300!5m2!1sru!2sge"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

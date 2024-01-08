@@ -1,0 +1,134 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body{
+background-image: url(/static/Worlds-museum-home.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+height:2000px;
+}
+    .start-end-start-column{
+    display:flex;
+     flex-direction: column;
+     gap:50px;
+     margin-top:100px;
+     width: 1200px;
+    }
+     .start-column{
+
+    }
+    .end-column{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right:200px;
+    }
+    .start2-column2{
+
+    }
+    .card_info{
+    width:680px;
+    height:500px;
+    border-top:1.5px solid black;
+border-left:1.5px solid black;
+border-right:1.5px solid black;
+border-bottom:1.5px solid black;
+border-radius:10px;
+    }
+    .add-mus{
+    position:absolute;
+    left:0px;
+    top:0px;
+    }
+</style>
+
+
+
+<div class="start-end-start-column">
+    <div class="start-column">
+        <div class="mum">
+            {% for muz_info in info %}
+            <div class="card1">
+                <img class="card_info"
+                     src="/static/{{muz_info['img']}}"
+                     alt="country">
+            </div>
+            <div class="country_info">
+                <p>
+                    {{muz_info["info"]}}
+                </p>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    დააჭირეთ ღილაკს ქვეყნის მუზეუმების სანახავად
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info["drp1"]}}</a></li>
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info["drp2"]}}</a></li>
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info["drp3"]}}</a></li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="end-column">
+        <div class="dad">
+            {% for muz_info2 in info2 %}
+            <div class="card2">
+                <img class="card_info"
+                     src="/static/{{muz_info2['img']}}"
+                     alt="country">
+            </div>
+            <div class="country_info2">
+                <p>
+                    {{muz_info2["info"]}}
+                </p>
+            </div>
+            <div class="dropdown2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    დააჭირეთ ღილაკს ქვეყნის მუზეუმების სანახავად
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info2["drp1"]}}</a></li>
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info2["drp2"]}}</a></li>
+                    <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info2["drp3"]}}</a></li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="start2-column2">
+
+        {% for muz_info3 in info3 %}
+        <div class="card3">
+            <img class="card_info"
+                 src="/static/{{muz_info3['img']}}"
+                 alt="country">
+        </div>
+        <div class="country_info3">
+            <p>
+                {{muz_info3["info"]}}
+            </p>
+        </div>
+        <div class="dropdown3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                დააჭირეთ ღილაკს ქვეყნის მუზეუმების სანახავად
+            </button>
+            <ul class="dropdown-menu">
+                <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info3["drp1"]}}</a></li>
+                <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info3["drp2"]}}</a></li>
+                <li class="drp_li"><a class="dropdown-item" href="/info">{{muz_info3["drp3"]}}</a></li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

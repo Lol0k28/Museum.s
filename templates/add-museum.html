@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body{
+    background-color:aqua;
+    }
+    .bottom_info{
+    position:relative;
+    top:490px;
+    }
+   .conteiner.text-centre{
+   position:relative;
+   background-color:black;
+   top:100px;
+   left:20px;
+   width: 98%;
+   height: 510px;
+   padding: 15px 15px 15px 15px;
+   display: flex;
+   flex-direction: column;
+   border-radius:12px;
+   box-shadow:1px 1px 20px 10px red;
+   transition: 0.3s;
+   }
+   .conteiner.text-centre:hover{
+   box-shadow:1px 1px 20px 10px #78e119;
+   transition: 0.3s;
+   }
+   .add-museum-title{
+ position: relative;
+   font-size: 25px;
+   background-color: white;
+   width: 345px;
+   height: 50px;
+   left: 150px;
+   top: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   border:1px solid black;
+   border-radius:9px;
+   }
+   .add-museum-bottom-title{
+   position:relative;
+   top:150px;
+   left:20px;
+   font-size:18px;
+   background-color: white;
+   width: 300px;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   border:1px solid black;
+   border-radius:9px;
+   }
+    .alert.alert-danger{
+        width: 20%;
+    height: 7%;
+    display: flex;
+    align-items: center;
+    }
+</style>
+
+<p class="add-museum-title"> მუზეუმის დამატება </p>
+
+<div class="conteiner text-centre">
+    {% for field, errors in form.errors.items() %}
+    {% for error in errors %}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.title(class="form-control mt-5", placeholder=form.title.label.text) }}
+        {{ form.info(class="form-control mt-5", placeholder=form.info.label.text) }}
+        {{ form.country(class="form-control mt-5", placeholder=form.country.label.text) }}
+        {{ form.img(class="form-control mt-5", placeholder=form.img.label.text, accept=".jpg,.jpeg,.png") }}
+        {{ form.submit(class="btn btn-success mt-5") }}
+    </form>
+</div>
+
+<a class="add-museum-bottom-title" href="/add_artefact">არტეფაქტის დამატება ?</a>
+
+
+{% endblock %}
