@@ -36,7 +36,7 @@ class UserOpinion(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    username = StringField("შეიყვანეთ სახელი", validators=[DataRequired(message="შეიყვანეთ სახელი !")])
+    username = StringField("შეიყვანეთ სახელი", validators=[DataRequired(message="შეიყვანეთ სახელი !"), Length(min=3, max=22, message="სახელი უნდა იყოს მინიმუმ 3 ასოსგან")])
     password = PasswordField("შეიყვანეთ პაროლი", validators=[Length(min=8, max=22, message="პაროლი უნდა იყოს მინიმუმ 8 ასო")])
     repeat_password = PasswordField("გაიმეორეთ პაროლი", validators=[Length(min=8, max=22, message="პაროლი უნდა იყოს მინიმუმ 8 ასო"), equal_to("password", message="პაროლები უნდა ემთხვევოდეს ერთმანეთს")])
     email = EmailField("შეიყვანეთ იმეილი", validators=[DataRequired(message="შეიყვანეთ იმეილი !")])
